@@ -12,6 +12,10 @@ def contact_view(request):
         roll_no = request.POST.get('phone')
         gender = request.POST.get('gender')
 
+        print(first_name)
+        print(last_name)
+        print(roll_no)
+        print(gender)
         # Create and save a new Contact instance
         mydata.objects.create(
             fname=first_name,
@@ -19,7 +23,7 @@ def contact_view(request):
             phone=roll_no,
             gender=gender
         )
-        return redirect('/success')  # Redirect to a success page or another view
+        return redirect('success')  # Redirect to a success page or another view
 
     return render(request, 'index.html')
 
