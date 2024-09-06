@@ -1,5 +1,6 @@
 
 from django.db import models
+from .models import course_details
 
 class course_details(models.Model):
   title = models.CharField(max_length=255)
