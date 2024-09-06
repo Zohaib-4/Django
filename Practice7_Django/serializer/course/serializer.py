@@ -1,8 +1,8 @@
 
-from django.db import models
+from rest_framework import serializers
 
-class course_details(models.Model):
-  title = models.CharField(max_length=255)
-  description = models.CharField(max_length=255)
-  instructor = models.CharField(max_length=255)
-  duration = models.IntegerField()
+class CourseSerializer(serializers.Serializer):
+  title = serializers.CharField(max_length=255)
+  description = serializers.CharField(max_length=255)
+  instructor = serializers.CharField(max_length=255)
+  duration = serializers.IntegerField()
