@@ -1,9 +1,9 @@
 from django.contrib import admin
 from django.urls import include, path
+from course import views
 
 urlpatterns = [
-    path('', include('course.urls')),
     path('admin/', admin.site.urls),
-    path('course-info/<int:id>',views.course_details),
+    path('course-info/<int:pk>',views.course_detail),
     path('course-info/',views.course_list)
 ]
