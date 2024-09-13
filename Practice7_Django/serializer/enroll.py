@@ -4,7 +4,7 @@ import json
 URL = "http://127.0.0.1:8000/enrollStudent/"
 
 data = {
-    'course' : 6,
+    'course' : 5,
     'student' : 6
 }
 

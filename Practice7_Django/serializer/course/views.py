@@ -72,8 +72,8 @@ def course_create(request):
 @csrf_exempt
 def enroll_student(request):
     if request.method == 'POST':
-        json_data = request.body
-        stream = io.BytesIO(json_data)
+        data = request.body
+        stream = io.BytesIO(data)
         pythonData = JSONParser().parse(stream)
         serializer = EnrollmentSerializer(data = pythonData)
 
