@@ -34,6 +34,7 @@ def enrolled_students(request, pk):
     except course_details.DoesNotExist:
         return HttpResponse(status=404)
 
+@csrf_exempt
 def student_create(request):
     if request.method == 'POST':
         json_data = request.body
@@ -46,5 +47,8 @@ def student_create(request):
             res = {'msg': 'Data Created'}
             json_data = JSONRenderer().render(res)
             return HttpResponse(json_data, content_type='application/json')
+        
         json_data = JSONRenderer().render(serializer.error_messages)
         return HttpResponse(json_data, content_type='application/json')
+    
+        
