@@ -6,7 +6,8 @@ URL = "http://127.0.0.1:8000/addStudent/"
 data = {
     'roll' : 9090,
     'name' : 'Rohan',
-    'city' : 'Sukhar'  
+    'phone' : 231456,
+    'email' : 'rohan@gmail.com'
 }
 
 json_data = json.dumps(data)
