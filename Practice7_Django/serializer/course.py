@@ -1,13 +1,13 @@
 import requests
 import json
 
-URL = "http://127.0.0.1:8000/addStudent/"
+URL = "http://127.0.0.1:8000/addCourse/"
 
 data = {
-    'roll' : 9090,
-    'name' : 'Rohan',
-    'phone' : 231456,
-    'email' : 'rohan@gmail.com'
+    'title' : 'Quantum Computing',
+    'description' : 'This is Quantum Computing course',
+    'instructor' : 'Dr Ali Kazmi',
+    'duration' : 3
 }
 
 json_data = json.dumps(data)
