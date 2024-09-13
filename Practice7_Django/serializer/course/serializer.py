@@ -1,6 +1,6 @@
 
 from rest_framework import serializers
-from .models import course_details, student_details
+from .models import course_details, enrollment, student_details
 
 class CourseSerializer(serializers.Serializer):
   title = serializers.CharField(max_length=255)
@@ -26,4 +26,4 @@ class EnrollmentSerializer(serializers.Serializer):
     student = serializers.PrimaryKeyRelatedField(queryset=student_details.objects.all())
 
     def create(self, validated_data):
-      return enrollment.objects.create(**validated_data)
+        return enrollment.objects.create(**validated_data)

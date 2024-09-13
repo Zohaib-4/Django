@@ -69,4 +69,19 @@ def course_create(request):
         json_data = JSONRenderer().render(serializer.error_messages)
         return HttpResponse(json_data, content_type='application/json')
     
+@csrf_exempt
+def enroll_student(request):
+    if request.method == 'POST':
+        json_data = request.body
+        stream = io.BytesIO(json_data)
+        pythonData = JSONParser().parse(stream)
+        serializer = EnrollmentSerializer(data = pythonData)
+
+        if serializer.is_valid():
+            serializer.save()
+            res = {'msg': 'Data Created'}
+            json_data = JSONRenderer().render(res)
+            return HttpResponse(json_data, content_type='application/json')
         
+        json_data = JSONRenderer().render(serializer.error_messages)
+        return HttpResponse(json_data, content_type='application/json')
