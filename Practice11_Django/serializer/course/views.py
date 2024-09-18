@@ -128,3 +128,30 @@ def course_update(request, course_id):
             return JsonResponse({'message': 'Course updated successfully'}, status=200)
         else:
             return JsonResponse(serializer.errors, status=400)
+
+@csrf_exempt
+def course_delete(request, course_id):
+    if request.method == 'DELETE':
+        try:
+            course = course_details.objects.get(id=course_id)
+        except course_details.DoesNotExist:
+            return JsonResponse({'error': 'Course not found'}, status=404)
+        
+        
+        course.delete()
+        return JsonResponse({'message': 'Course deleted successfully'}, status=200)
+
+    return HttpResponse(status=405)
+
+@csrf_exempt
+def student_delete(request, student_roll):
+    if request.method == 'DELETE':
+        try:
+            student = student_details.objects.get(roll=student_roll)
+        except student_details.DoesNotExist:
+            return JsonResponse({'error': 'Student not found'}, status=404)
+        
+        student.delete()
+        return JsonResponse({'message': 'Student deleted successfully'}, status=200)
+
+    return HttpResponse(status=405)
