@@ -8,6 +8,8 @@ class CourseSerializer(serializers.Serializer):
   instructor = serializers.CharField(max_length=255)
   duration = serializers.IntegerField()
 
+  def create(self, )
+
   def create(self, validated_data):
     return course_details.objects.create(**validated_data)
 

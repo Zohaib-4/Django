@@ -1,8 +1,9 @@
+import json
 from django.shortcuts import render
 from .models import course_details, student_details, enrollment
 from .serializer import CourseSerializer, StudentSerializer, EnrollmentSerializer
 from rest_framework.renderers import JSONRenderer
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 import io
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework.parsers import JSONParser
@@ -85,3 +86,24 @@ def enroll_student(request):
         
         json_data = JSONRenderer().render(serializer.error_messages)
         return HttpResponse(json_data, content_type='application/json')
+
+@csrf_exempt
+def update_student(request, student_roll):
+    if request.method == 'PUT':
+        try:
+            student=student_details.objects.get(roll=student_roll)
+        except student_details.DoesNotExist:
+            return JsonResponse({'error': 'Student not found'}, status =404)
+        
+        try:
+            data = json.loads(request.body)
+        except:
+            return JsonResponse({'error': 'Invalid data'}, status=400)
+        
+        serializer = StudentSerializer(student, data=data, partial = True)
+
+        if serializer.is_valid():
+            serializer.save()
+            return JsonResponse({'message': 'Student updated successfully'}, status= 200)
+        else:
+            return JsonResponse(serializer.errors, status=400)
