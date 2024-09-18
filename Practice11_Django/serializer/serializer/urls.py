@@ -11,8 +11,11 @@ urlpatterns = [
     path('course/<int:pk>/enrolled/',views.enrolled_students),
     path('addStudent/',views.student_create),
     path('addCourse/',views.course_create),
-    path('enrollStudent/',views.enroll_student),
+    path('enrollStudent/',views.enroll_student), 
 
     #update 
-    path('updateCourse/<str:ccourse_id>/update',views.course),
+    path('updateCourse/<str:course_id>/update',views.course_update),
+    path('updateStudent/<str:student_id>/update',views.student_update),
+
+
 ] 

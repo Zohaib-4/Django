@@ -107,7 +107,8 @@ def student_update(request, student_roll):
             return JsonResponse({'message': 'Student updated successfully'}, status= 200)
         else:
             return JsonResponse(serializer.errors, status=400)
-        
+
+@csrf_exempt  
 def course_update(request, course_id):
     try:
         course = course_details.objects.get(id=course_id)
