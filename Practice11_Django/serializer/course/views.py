@@ -88,7 +88,7 @@ def enroll_student(request):
         return HttpResponse(json_data, content_type='application/json')
 
 @csrf_exempt
-def update_student(request, student_roll):
+def student_update(request, student_roll):
     if request.method == 'PUT':
         try:
             student=student_details.objects.get(roll=student_roll)
@@ -105,5 +105,25 @@ def update_student(request, student_roll):
         if serializer.is_valid():
             serializer.save()
             return JsonResponse({'message': 'Student updated successfully'}, status= 200)
+        else:
+            return JsonResponse(serializer.errors, status=400)
+        
+def course_update(request, course_id):
+    try:
+        course = course_details.objects.get(id=course_id)
+    except course_details.DoesNotExist:
+        return JsonResponse({'error': 'Course not found'}, status=404)
+    
+    if request.method == 'PUT':
+        try:
+            data = json.loads(request.body)
+        except:
+            return JsonResponse({'error': 'Invalid data'}, status=400)
+        
+        serializer = CourseSerializer(course, data=data, partial=True)
+
+        if serializer.is_valid():
+            serializer.save()
+            return JsonResponse({'message': 'Course updated successfully'}, status=200)
         else:
             return JsonResponse(serializer.errors, status=400)
