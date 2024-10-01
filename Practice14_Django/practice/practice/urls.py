@@ -1,22 +1,14 @@
-"""
-URL configuration for practice project.
-
-The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/5.1/topics/http/urls/
-Examples:
-Function views
-    1. Add an import:  from my_app import views
-    2. Add a URL to urlpatterns:  path('', views.home, name='home')
-Class-based views
-    1. Add an import:  from other_app.views import Home
-    2. Add a URL to urlpatterns:  path('', Home.as_view(), name='home')
-Including another URLconf
-    1. Import the include() function: from django.urls import include, path
-    2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
-"""
 from django.contrib import admin
-from django.urls import path
+from django.urls import include, path
+from jwt import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-]
+    path('course-info/<int:pk>',views.course_detail),
+    path('course-info/',views.course_list),
+    path('course/<int:pk>/enrolled/',views.enrolled_students),
+    path('addStudent/',views.student_create),
+    path('addCourse/',views.course_create),
+    path('enrollStudent/',views.enroll_student)
+
+] 
