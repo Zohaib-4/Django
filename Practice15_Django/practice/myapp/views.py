@@ -1,9 +1,9 @@
 import re
+from django.http import HttpResponse
 from django.shortcuts import redirect, render
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
-from .models import CustomUser
 from rest_framework_simplejwt.tokens import RefreshToken
 from .models import checkdb
 
@@ -61,3 +61,6 @@ def signup(request):
             return redirect('success')  # Redirect to a success page or dashboard
 
     return render(request, 'signup.html', {'error_message': error_message})
+
+def success(request):
+    return HttpResponse("All set good to go")
