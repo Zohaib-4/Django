@@ -29,7 +29,7 @@ from .models import checkdb
 #         return redirect('success')
 
 #     return render(request, 'login.html', {'error_message': error_message})
-
+# @csrf_exempt
 def signup(request):
     error_message = ""
     if request.method == 'POST':
