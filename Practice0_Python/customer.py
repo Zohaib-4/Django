@@ -16,7 +16,7 @@ class ShoppingCart:
             return "Your cart is empty"
         else:
             return f"Total Price: {self.total_price}"
-        
+
 cust1 = ShoppingCart()
 cust1.add_item("Laptop", 1200)
 cust1.add_item("HeadPhone", 400)
